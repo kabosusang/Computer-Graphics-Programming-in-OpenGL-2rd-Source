@@ -1,3 +1,4 @@
+#include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include <iostream>
 
@@ -18,6 +19,9 @@ int main(void) {
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	GLFWwindow *window = glfwCreateWindow(600, 600, "Chapter2 - program1", NULL, NULL);
 	glfwMakeContextCurrent(window);
+	if (glewInit() != GLEW_OK) {
+		exit(EXIT_FAILURE);
+	}
 	glfwSwapInterval(1);
 
 	init(window);

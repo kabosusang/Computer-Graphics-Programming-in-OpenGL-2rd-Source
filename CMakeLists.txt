@@ -32,6 +32,8 @@ add_subdirectory(3rdparty/glm)
 set(SOIL2_BUILD_TESTS OFF)
 add_subdirectory(3rdparty/SOIL2)
 
+add_subdirectory(3rdparty/glew)
+
 #----------------------------------------------------------------
 # 公共配置（头文件/库依赖）
 #----------------------------------------------------------------
@@ -40,7 +42,7 @@ set(INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/include)
 include_directories(${INCLUDE_DIR})
 
 # 公共库依赖（GLFW/GLM/SOIL2）
-set(COMMON_LIBS glfw glm soil2)
+set(COMMON_LIBS glfw glm soil2 libglew_static)
 
 #----------------------------------------------------------------
 # 子目录配置（关键修改点）
