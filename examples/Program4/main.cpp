@@ -1,40 +1,42 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include <cstdlib>
+#include <fstream>
+#include <ios>
+#include <iostream>
+#include <string>
+
+using namespace std;
 
 #define numVAOs 1
 
 GLuint renderingProgram;
 GLuint vao[numVAOs];
 
+string readShaderSource(const char *filePath) {
+	string content;
+	ifstream fileStream(filePath, ios::in);
+	string line = "";
+	while (!fileStream.eof()) {
+		getline(fileStream, line);
+		content.append(line + "\n");
+	}
+	fileStream.close();
+	return content;
+}
+
 GLuint createShaderProgram() {
-	const char *vshaderSource =
-			"#version 430 \n"
-			"void main(void) \n"
-			"{ gl_Position = vec4(0.0, 0.0, 0.0, 1.0); }";
+	string vertShaderStr = readShaderSource("Shader/Program4/vertShader.glsl");
+	string fragShaderStr = readShaderSource("Shader/Program4/fragShader.glsl");
 
-	const char *fshaderSource =
-			R"(#version 430
-            out vec4 color;
-            void main(void)
-            { 
-                if (gl_FragCoord.x < 295) 
-                    color = vec4(1.0, 0.0, 0.0, 1.0);  
-                else 
-                    color = vec4(0.0, 0.0, 1.0, 1.0);
-            })";
-
-	// const char *fshaderSource =
-	// 		"#version 430 \n"
-	// 		"out vec4 color; \n"
-	// 		"void main(void) \n"
-	// 		"{ color = vec4(0.0, 0.0, 1.0, 1.0); }";
+	const char *vertShaderSrc = vertShaderStr.c_str();
+	const char *fragShaderSrc = fragShaderStr.c_str();
 
 	GLuint vShader = glCreateShader(GL_VERTEX_SHADER);
 	GLuint fShader = glCreateShader(GL_FRAGMENT_SHADER);
 
-	glShaderSource(vShader, 1, &vshaderSource, NULL);
-	glShaderSource(fShader, 1, &fshaderSource, NULL);
+	glShaderSource(vShader, 1, &vertShaderSrc, NULL);
+	glShaderSource(fShader, 1, &fragShaderSrc, NULL);
 	glCompileShader(vShader);
 	glCompileShader(fShader);
 
@@ -59,6 +61,7 @@ void display(GLFWwindow *window, double currentTime) {
 }
 
 int main(void) {
+
 	if (!glfwInit()) {
 		exit(EXIT_FAILURE);
 	}
