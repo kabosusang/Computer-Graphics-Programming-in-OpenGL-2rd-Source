@@ -50,5 +50,8 @@ set(COMMON_LIBS glfw glm soil2 libglew_static)
 # 设置可执行文件输出目录
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
+#复制着色器文件到bin目录
+file(COPY ${CMAKE_SOURCE_DIR}/Shader DESTINATION ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
+
 # 添加apps子目录（将生成所有可执行文件）
 add_subdirectory(examples)

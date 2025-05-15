@@ -4,9 +4,8 @@ add_subdirectory(Program1)
 add_subdirectory(Program2)
 #add_subdirectory(Program3) #用作调试
 add_subdirectory(Program4)
-
-
-
+add_subdirectory(Program5)
+add_subdirectory(Program6)
 
 #add_subdirectory(App2)
 # 按需添加更多应用...

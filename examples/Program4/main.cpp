@@ -1,6 +1,7 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include <cstdlib>
+#include <filesystem>
 #include <fstream>
 #include <ios>
 #include <iostream>
@@ -26,6 +27,8 @@ string readShaderSource(const char *filePath) {
 }
 
 GLuint createShaderProgram() {
+    cout << filesystem::current_path();
+
 	string vertShaderStr = readShaderSource("Shader/Program4/vertShader.glsl");
 	string fragShaderStr = readShaderSource("Shader/Program4/fragShader.glsl");
 
@@ -67,7 +70,7 @@ int main(void) {
 	}
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-	GLFWwindow *window = glfwCreateWindow(600, 600, "Chapter2 - program1", NULL, NULL);
+	GLFWwindow *window = glfwCreateWindow(600, 600, "Chapter2 - program4", NULL, NULL);
 	glfwMakeContextCurrent(window);
 	if (glewInit() != GLEW_OK) {
 		exit(EXIT_FAILURE);
