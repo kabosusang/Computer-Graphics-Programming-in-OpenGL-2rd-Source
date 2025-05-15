@@ -7,4 +7,4 @@ set(APP6_SOURCES
 # 创建可执行目标
 add_executable(Program6 ${APP6_SOURCES})
 # 链接公共库和头文件
-target_link_libraries(Program6 PRIVATE ${COMMON_LIBS})
+target_link_libraries(Program6 PRIVATE common_lib ${COMMON_LIBS})

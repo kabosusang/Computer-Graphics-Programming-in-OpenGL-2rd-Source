@@ -147,7 +147,8 @@ int main(void) {
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE); // I don't know what this does
 	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); // and neither this
-	GLFWwindow *window = glfwCreateWindow(600, 600, "Chapter2 - program6", nullptr, nullptr);
+	GLFWwindow *window = glfwCreateWindow(600, 600, 
+        "Chapter2 - program6", nullptr, nullptr);
 	glfwMakeContextCurrent(window);
 	if (glewInit() != GLEW_OK) {
 		exit(EXIT_FAILURE);
