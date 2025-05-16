@@ -15,8 +15,8 @@ void init(GLFWwindow *window)
 {
 	// Utils
 	renderingProgram = Utils::createShaderProgram(
-			"Shader/Program6/vertShader.glsl",
-			"Shader/Program6/fragShader.glsl");
+			"Shader/Chapter2-Program6/vertShader.glsl",
+			"Shader/Chapter2-Program6/fragShader.glsl");
 
 	glGenVertexArrays(numVAOs, vao);
 	glBindVertexArray(vao[0]);

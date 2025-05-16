@@ -1,5 +1,5 @@
 # 定义要扫描的所有章节
-set(CHAPTERS "Chapter2" "Chapter3")  # 可以继续添加 Chapter4, Chapter5...
+set(CHAPTERS "Chapter2" "Chapter4")  # 可以继续添加 Chapter4, Chapter5...
 
 # 遍历每个 ChapterX 目录
 foreach(chapter ${CHAPTERS})
@@ -16,10 +16,13 @@ foreach(chapter ${CHAPTERS})
 
         # 如果有 .cpp 文件才创建可执行目标
         if(sources)
-            message(STATUS "添加可执行目标: ${chapter}/${prog_name}")
-            add_executable(${prog_name} ${sources})
-            target_link_libraries(${prog_name} PRIVATE common_lib ${COMMON_LIBS})
+            # 生成唯一目标名：ChapterX_ProgramY（例如 Chapter2_Program1）
+            set(target_name "${chapter}_${prog_name}")
+            message(STATUS "添加可执行目标: ${target_name} (源目录: ${program_dir})")
+
+            # 创建可执行文件
+            add_executable(${target_name} ${sources})
+            target_link_libraries(${target_name} PRIVATE common_lib ${COMMON_LIBS})
         endif()
     endforeach()
 endforeach()
-
