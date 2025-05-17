@@ -42,9 +42,9 @@ void setupVertices(void) { // 36个顶点，12个三角形，组成了放置在�
 }
 
 void init(GLFWwindow *window) {
-	renderingProgram =Utils::createShaderProgram(
-	"Shader/Chapter4/Program1/vertShader.glsl",
-	"Shader/Chapter4/Program1/fragShader.glsl");
+	renderingProgram = Utils::createShaderProgram(
+			"Shader/Chapter4/Program2/vertShader.glsl",
+			"Shader/Chapter4/Program2/fragShader.glsl");
 	cameraX = 0.0f;
 	cameraY = 0.0f;
 	cameraZ = 8.0f;
@@ -93,7 +93,7 @@ int main(void) { // main()和之前的没有变化
 	}
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-	GLFWwindow *window = glfwCreateWindow(600, 600, "Chapter 4 - program 1", NULL, NULL);
+	GLFWwindow *window = glfwCreateWindow(600, 600, "Chapter 4 - program 2", NULL, NULL);
 	glfwMakeContextCurrent(window);
 	if (glewInit() != GLEW_OK) {
 		exit(EXIT_FAILURE);

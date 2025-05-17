@@ -29,8 +29,8 @@ string readShaderSource(const char *filePath) {
 GLuint createShaderProgram() {
     cout << filesystem::current_path();
 
-	string vertShaderStr = readShaderSource("Shader/Chapter2-Program4/vertShader.glsl");
-	string fragShaderStr = readShaderSource("Shader/Chapter2-Program4/fragShader.glsl");
+	string vertShaderStr = readShaderSource("Shader/Chapter2/Program4/vertShader.glsl");
+	string fragShaderStr = readShaderSource("Shader/Chapter2/Program4/fragShader.glsl");
 
 	const char *vertShaderSrc = vertShaderStr.c_str();
 	const char *fragShaderSrc = fragShaderStr.c_str();
