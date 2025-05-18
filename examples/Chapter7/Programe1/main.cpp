@@ -154,6 +154,7 @@ void display(GLFWwindow* window, double currentTime) {
 	installLights(vMat);
 
 	mvMat = vMat * mMat;
+    //法线矩阵 --> 模型视图矩阵的逆转置矩阵
 	invTrMat = glm::transpose(glm::inverse(mvMat));
 
 	glUniformMatrix4fv(mvLoc, 1, GL_FALSE, glm::value_ptr(mvMat));
