@@ -1,5 +1,10 @@
 # 定义要扫描的所有章节
-set(CHAPTERS "Chapter2" "Chapter4" "Chapter5" "Chapter6")  # 可以继续添加 Chapter4, Chapter5...
+set(CHAPTERS "Chapter2" 
+"Chapter4" 
+"Chapter5" 
+"Chapter6"
+"Chapter7"
+)  # 可以继续添加 Chapter4, Chapter5...
 
 # 遍历每个 ChapterX 目录
 foreach(chapter ${CHAPTERS})
