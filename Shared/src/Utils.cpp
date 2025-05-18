@@ -39,8 +39,7 @@ void Utils::printShaderLog(GLuint shader) {
 	}
 }
 
-GLuint Utils::prepareShader(int shaderTYPE, const char *shaderPath)
-{
+GLuint Utils::prepareShader(int shaderTYPE, const char *shaderPath) {
 	GLint shaderCompiled;
 	string shaderStr = readShaderFile(shaderPath);
 	const char *shaderSrc = shaderStr.c_str();
@@ -49,13 +48,22 @@ GLuint Utils::prepareShader(int shaderTYPE, const char *shaderPath)
 	glCompileShader(shaderRef);
 	checkOpenGLError();
 	glGetShaderiv(shaderRef, GL_COMPILE_STATUS, &shaderCompiled);
-	if (shaderCompiled != 1)
-	{
-		if (shaderTYPE == 35633) cout << "Vertex ";
-		if (shaderTYPE == 36488) cout << "Tess Control ";
-		if (shaderTYPE == 36487) cout << "Tess Eval ";
-		if (shaderTYPE == 36313) cout << "Geometry ";
-		if (shaderTYPE == 35632) cout << "Fragment ";
+	if (shaderCompiled != 1) {
+		if (shaderTYPE == 35633) {
+			cout << "Vertex ";
+		}
+		if (shaderTYPE == 36488) {
+			cout << "Tess Control ";
+		}
+		if (shaderTYPE == 36487) {
+			cout << "Tess Eval ";
+		}
+		if (shaderTYPE == 36313) {
+			cout << "Geometry ";
+		}
+		if (shaderTYPE == 35632) {
+			cout << "Fragment ";
+		}
 		cout << "shader compilation error." << endl;
 		printShaderLog(shaderRef);
 	}
@@ -75,14 +83,12 @@ void Utils::printProgramLog(int prog) {
 	}
 }
 
-int Utils::finalizeShaderProgram(GLuint sprogram)
-{
+int Utils::finalizeShaderProgram(GLuint sprogram) {
 	GLint linked;
 	glLinkProgram(sprogram);
 	checkOpenGLError();
 	glGetProgramiv(sprogram, GL_LINK_STATUS, &linked);
-	if (linked != 1)
-	{
+	if (linked != 1) {
 		cout << "linking failed" << endl;
 		printProgramLog(sprogram);
 	}
@@ -111,7 +117,7 @@ GLuint Utils::createShaderProgram(const char *vp, const char *gp, const char *fp
 	return vgfprogram;
 }
 
-GLuint Utils::createShaderProgram(const char *vp, const char *tCS, const char* tES, const char *fp) {
+GLuint Utils::createShaderProgram(const char *vp, const char *tCS, const char *tES, const char *fp) {
 	GLuint vShader = prepareShader(GL_VERTEX_SHADER, vp);
 	GLuint tcShader = prepareShader(GL_TESS_CONTROL_SHADER, tCS);
 	GLuint teShader = prepareShader(GL_TESS_EVALUATION_SHADER, tES);
@@ -125,7 +131,7 @@ GLuint Utils::createShaderProgram(const char *vp, const char *tCS, const char* t
 	return vtfprogram;
 }
 
-GLuint Utils::createShaderProgram(const char *vp, const char *tCS, const char* tES, char *gp, const char *fp) {
+GLuint Utils::createShaderProgram(const char *vp, const char *tCS, const char *tES, char *gp, const char *fp) {
 	GLuint vShader = prepareShader(GL_VERTEX_SHADER, vp);
 	GLuint tcShader = prepareShader(GL_TESS_CONTROL_SHADER, tCS);
 	GLuint teShader = prepareShader(GL_TESS_EVALUATION_SHADER, tES);
@@ -141,20 +147,61 @@ GLuint Utils::createShaderProgram(const char *vp, const char *tCS, const char* t
 	return vtgfprogram;
 }
 
+GLuint Utils::loadTexture(const char *texImagePath) {
+	GLuint textureID = SOIL_load_OGL_texture(texImagePath, SOIL_LOAD_AUTO, SOIL_CREATE_NEW_ID, SOIL_FLAG_INVERT_Y);
+	if (textureID == 0) {
+		cout << "could not find texture file" << texImagePath << endl;
+	}
+    return textureID;
+}
+
 // GOLD material - ambient, diffuse, specular, and shininess
-float* Utils::goldAmbient() { static float a[4] = { 0.2473f, 0.1995f, 0.0745f, 1 }; return (float*)a; }
-float* Utils::goldDiffuse() { static float a[4] = { 0.7516f, 0.6065f, 0.2265f, 1 }; return (float*)a; }
-float* Utils::goldSpecular() { static float a[4] = { 0.6283f, 0.5559f, 0.3661f, 1 }; return (float*)a; }
-float Utils::goldShininess() { return 51.2f; }
+float *Utils::goldAmbient() {
+	static float a[4] = { 0.2473f, 0.1995f, 0.0745f, 1 };
+	return (float *)a;
+}
+float *Utils::goldDiffuse() {
+	static float a[4] = { 0.7516f, 0.6065f, 0.2265f, 1 };
+	return (float *)a;
+}
+float *Utils::goldSpecular() {
+	static float a[4] = { 0.6283f, 0.5559f, 0.3661f, 1 };
+	return (float *)a;
+}
+float Utils::goldShininess() {
+	return 51.2f;
+}
 
 // SILVER material - ambient, diffuse, specular, and shininess
-float* Utils::silverAmbient() { static float a[4] = { 0.1923f, 0.1923f, 0.1923f, 1 }; return (float*)a; }
-float* Utils::silverDiffuse() { static float a[4] = { 0.5075f, 0.5075f, 0.5075f, 1 }; return (float*)a; }
-float* Utils::silverSpecular() { static float a[4] = { 0.5083f, 0.5083f, 0.5083f, 1 }; return (float*)a; }
-float Utils::silverShininess() { return 51.2f; }
+float *Utils::silverAmbient() {
+	static float a[4] = { 0.1923f, 0.1923f, 0.1923f, 1 };
+	return (float *)a;
+}
+float *Utils::silverDiffuse() {
+	static float a[4] = { 0.5075f, 0.5075f, 0.5075f, 1 };
+	return (float *)a;
+}
+float *Utils::silverSpecular() {
+	static float a[4] = { 0.5083f, 0.5083f, 0.5083f, 1 };
+	return (float *)a;
+}
+float Utils::silverShininess() {
+	return 51.2f;
+}
 
 // BRONZE material - ambient, diffuse, specular, and shininess
-float* Utils::bronzeAmbient() { static float a[4] = { 0.2125f, 0.1275f, 0.0540f, 1 }; return (float*)a; }
-float* Utils::bronzeDiffuse() { static float a[4] = { 0.7140f, 0.4284f, 0.1814f, 1 }; return (float*)a; }
-float* Utils::bronzeSpecular() { static float a[4] = { 0.3936f, 0.2719f, 0.1667f, 1 }; return (float*)a; }
-float Utils::bronzeShininess() { return 25.6f; }
+float *Utils::bronzeAmbient() {
+	static float a[4] = { 0.2125f, 0.1275f, 0.0540f, 1 };
+	return (float *)a;
+}
+float *Utils::bronzeDiffuse() {
+	static float a[4] = { 0.7140f, 0.4284f, 0.1814f, 1 };
+	return (float *)a;
+}
+float *Utils::bronzeSpecular() {
+	static float a[4] = { 0.3936f, 0.2719f, 0.1667f, 1 };
+	return (float *)a;
+}
+float Utils::bronzeShininess() {
+	return 25.6f;
+}

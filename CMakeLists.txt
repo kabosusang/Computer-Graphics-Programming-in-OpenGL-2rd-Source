@@ -61,6 +61,9 @@ target_link_libraries(common_lib PRIVATE ${COMMON_LIBS})  # 链接第三方库
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 #复制着色器文件到bin目录
 file(COPY ${CMAKE_SOURCE_DIR}/Shader DESTINATION ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
+#复制Assets资源到bin目录
+file(COPY ${CMAKE_SOURCE_DIR}/Assets DESTINATION ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
+
 
 # 添加apps子目录（将生成所有可执行文件）
 add_subdirectory(examples)

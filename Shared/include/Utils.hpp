@@ -1,15 +1,19 @@
 #pragma once
+//3rd Library
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
-//#include <SOIL2/SOIL2.h>
+#include "SOIL2.h"
+#include <glm/glm.hpp>
+#include <glm/gtc/type_ptr.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+
+//STL Library
 #include <string>
 #include <iostream>
 #include <fstream>
 #include <cmath>
 #include <vector>
-#include <glm/glm.hpp>
-#include <glm/gtc/type_ptr.hpp>
-#include <glm/gtc/matrix_transform.hpp>
+
 
 class Utils
 {
