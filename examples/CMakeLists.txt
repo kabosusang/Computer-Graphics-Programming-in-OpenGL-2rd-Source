@@ -8,6 +8,7 @@ set(CHAPTERS "Chapter2"
 "Chapter9"
 "Chapter10"
 "Chapter12"
+"Chapter13"
 )  # 可以继续添加 Chapter4, Chapter5...
 
 # 遍历每个 ChapterX 目录
